@@ -59,8 +59,9 @@ void CustomView::mousePressEvent( QMouseEvent * event )
         QGraphicsLineItem *line = new QGraphicsLineItem( startPoint.x(), startPoint.y(), event->x(), event->y() );
         scene->addItem( line );
         startPoint = event->pos();
+        scene->update();
+        
     }
-    
 }
 
 void CustomView::mouseMoveEvent( QMouseEvent * event )
