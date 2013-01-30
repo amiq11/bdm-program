@@ -1,6 +1,5 @@
 #include <QApplication>
 #include "mainwindow.h"
-#include "paintCanvas.h"
 
 using namespace std;
 
