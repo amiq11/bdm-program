@@ -156,8 +156,45 @@
    <class>CustomView</class>
    <extends>QGraphicsView</extends>
    <header>customView.h</header>
+   <slots>
+    <slot>clearField()</slot>
+    <slot>sendData()</slot>
+   </slots>
   </customwidget>
  </customwidgets>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>graphicsView</receiver>
+   <slot>clearField()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>708</x>
+     <y>70</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>617</x>
+     <y>139</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>graphicsView</receiver>
+   <slot>sendData()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>665</x>
+     <y>85</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>567</x>
+     <y>173</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

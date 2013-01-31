@@ -3,6 +3,7 @@
 #include <string>
 #include <QGraphicsEllipseItem>
 #include <QRect>
+#include <unistd.h>
 
 using namespace std;
 
@@ -25,13 +26,18 @@ CustomView::~CustomView()
 void CustomView::mouseDoubleClickEvent( QMouseEvent * event ) 
 {
     cout << "Double Clicked " << event->x() << ", " << event->y() << endl;
-    QGraphicsEllipseItem *circle = new QGraphicsEllipseItem( event->x() - 5, event->y() - 5, 10, 10 );
-    scene->addItem( circle );
 
     if ( isTracking ) {
+        QGraphicsEllipseItem *circle = new QGraphicsEllipseItem( event->x() - 5, event->y() - 5, 10, 10 );
+        scene->addItem( circle );
+        items.push_back( circle );
+
         isTracking = false;
         // QGraphicsLineItem *line = new QGraphicsLineItem( startPoint.x(), startPoint.y(), event->x(), event->y() );
         // scene->addItem( line );
+        arrItems.push_back( items );
+        cout << arrItems.size() << endl;
+        items.clear();
     }
     
     scene->update();
@@ -59,7 +65,10 @@ void CustomView::mousePressEvent( QMouseEvent * event )
         QGraphicsLineItem *line = new QGraphicsLineItem( startPoint.x(), startPoint.y(), event->x(), event->y() );
         scene->addItem( line );
         startPoint = event->pos();
+        items.push_back( line );
         scene->update();
+
+        cout << items.size() << endl;
         
     }
 }
@@ -75,3 +84,39 @@ void CustomView::mouseMoveEvent( QMouseEvent * event )
     
 }
 
+void CustomView::sendData()
+{
+    string tmp;
+
+    comm.send( "Hello World!\n" );
+    usleep( 500*1000 );
+    int ret = comm.recv( tmp );
+    if ( ret > 0 ) {
+        cout << tmp << endl;
+    } else {
+        cerr << "nothing is received!" << endl;
+    }
+}
+
+void CustomView::clearField()
+{
+    vector < QList <QGraphicsItem *> > ::iterator it;
+    if ( arrItems.size() > 0 ) {
+        it = arrItems.begin();
+        QList <QGraphicsItem *> tmp = *it;
+        while ( !tmp.isEmpty() ) {
+            QGraphicsItem *item = tmp.front();
+            scene->removeItem( item );
+            delete item;
+            tmp.pop_front();
+        }
+        arrItems.erase( it );
+        scene->update();
+        cout << arrItems.size() << endl;
+    } else {
+#ifdef _DEBUG_        
+        cerr << "All data is removed!" << endl;
+#endif
+    }
+}
+    

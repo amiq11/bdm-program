@@ -14,10 +14,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    customView.cpp
+    customView.cpp \
+    commDevice.cpp
 
 HEADERS  += mainwindow.h \
     paintCanvas.h \
-    customView.h
+    customView.h \
+    commDevice.h
 
 FORMS    += mainwindow.ui

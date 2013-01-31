@@ -20,7 +20,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    std::cout << "Hello World!" << std::endl;
+//    std::cout << "Hello World!" << std::endl;
 }
 
 void MainWindow::on_graphicsView_customContextMenuRequested(const QPoint &pos)
