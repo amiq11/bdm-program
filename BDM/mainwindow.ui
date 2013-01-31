@@ -157,8 +157,7 @@
    <extends>QGraphicsView</extends>
    <header>customView.h</header>
    <slots>
-    <slot>clearField()</slot>
-    <slot>sendData()</slot>
+    <slot>startAction()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -168,31 +167,15 @@
    <sender>pushButton</sender>
    <signal>clicked()</signal>
    <receiver>graphicsView</receiver>
-   <slot>clearField()</slot>
+   <slot>startAction()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>708</x>
-     <y>70</y>
+     <x>703</x>
+     <y>92</y>
     </hint>
     <hint type="destinationlabel">
-     <x>617</x>
-     <y>139</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton</sender>
-   <signal>clicked()</signal>
-   <receiver>graphicsView</receiver>
-   <slot>sendData()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>665</x>
-     <y>85</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>567</x>
-     <y>173</y>
+     <x>587</x>
+     <y>207</y>
     </hint>
    </hints>
   </connection>

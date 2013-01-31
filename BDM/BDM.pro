@@ -15,11 +15,17 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     customView.cpp \
-    commDevice.cpp
+    commDevice.cpp \
+    circle.cpp \
+    commandManager.cpp
 
 HEADERS  += mainwindow.h \
     paintCanvas.h \
     customView.h \
-    commDevice.h
+    commDevice.h \
+    circle.h \
+    commandManager.h
 
 FORMS    += mainwindow.ui
+
+QMAKE_CXXFLAGS += -std=c++11

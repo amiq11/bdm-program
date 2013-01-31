@@ -11,7 +11,10 @@
 #include <QGraphicsItemGroup>
 #include <QPoint>
 #include <QList>
+#include <QPropertyAnimation>
 #include "commDevice.h"
+#include "circle.h"
+#include "commandManager.h"
 
 class CustomView : public QGraphicsView
 {
@@ -22,22 +25,28 @@ public:
     ~CustomView();
 
 public slots:
-    void clearField();
-    void sendData();
+    void startAction();
 
 protected:
     void mouseDoubleClickEvent( QMouseEvent * event );
     void mousePressEvent( QMouseEvent * event );
     void mouseMoveEvent( QMouseEvent * event );
-
+    void timerEvent( QTimerEvent *event );
 private:
+    void clearField();
+    void sendData();
+    QPropertyAnimation *setPosAnimation( QGraphicsLineItem *line, int ms );
+
     QGraphicsScene *scene;
     bool isTracking;
     QPoint startPoint;
     QGraphicsLineItem trackLine;
-    QList <QGraphicsItem *> items;
-    std::vector < QList <QGraphicsItem *> >  arrItems;
-    CommDevice comm;
+    QList <QGraphicsLineItem *> items;
+    QList <QGraphicsEllipseItem *> itemsEllipse;
+    std::vector < QList <QGraphicsLineItem *> >  arrItems;
+
+    Circle *circle = 0;
+    CommandManager cm;
 };
 
     
